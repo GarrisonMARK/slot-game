@@ -5,10 +5,11 @@ const ROWS = 3;
 const COLS = 3;
 
 const SYMBOLS_COUNT = {
-    A: 3,
+    A: 5,
     B: 5,
     C: 7,
     D: 19,
+    E: 10,
     GW: 1,
 }
 
@@ -19,6 +20,7 @@ const SYMBOLS_VALUES = {
     B:4,
     C:3,
     D:2,
+    E:1,
     GW: 200,
 }
 
@@ -98,10 +100,41 @@ const transpose = (reels) => {
     return rows;
 };
 
+const printRows = (rows) => {
+    for (const row of rows){
+        let rowString = ""
+        for (const [i,symbol] of row.entries() ){
+            rowString += symbol
+            if (i != row.length -1){
+                rowString += " | "
+            }
+        }
+        console.log(rowString);
+    }
+}
+
+const getWinning = (rows, bet ,lines) =>{
+    let winning = 0 ;
+
+    for (let row = 0; row < lines; row++){
+        const symbols = rows[row];
+        let allSame = true
+
+
+        for(const symbol of symbols){
+            if (symbol != symbols[0]){
+                allSame = false;
+                break
+            }
+        }
+    }
+}
+
+
+
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance,numberOfLines);
 const reels = spin()
 const rows = transpose(reels)
-console.log(reels);
-console.log(rows);
+printRows(rows)
